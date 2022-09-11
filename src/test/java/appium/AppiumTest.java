@@ -37,7 +37,7 @@ public class AppiumTest {
           "automationName": "UiAutomator2",
           "deviceName": "AndroidEmulator",
           "platformVersion": "10.0",
-          "app": "C:\\Users\\Acer\\AppiumKurulum\\Apps\\gestureTool.apk"
+          "app": 0"C:\\Users\\Acer\\AppiumKurulum\\Apps\\gestureTool.apk"
         }
                  */
 
