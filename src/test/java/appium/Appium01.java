@@ -28,7 +28,5 @@ Thread.sleep(4000);
          driver.findElementById("com.google.android.calculator:id/digit_7").click();
 
          Thread.sleep(4000);
-         driver.close();
-
     }
 }

@@ -36,6 +36,19 @@ public class Appium02 {
 
         driver.findElement(By.xpath("(//android.widget.Button)[1]")).click();
         //driver.findElementByXPath("//div[@class='_highlighter-box_619e8 _inspected-element-box_619e8']").click();
+        Thread.sleep(3000);
+        driver.findElementById("com.davemac327.gesture.tool:id/gesture_name").sendKeys("test");
+        driver.findElementById("com.davemac327.gesture.tool:id/gestures_overlay").click();
+        Thread.sleep(3000);
+        driver.findElementById("com.davemac327.gesture.tool:id/done").click();
+        Thread.sleep(3000);
+        AndroidElement anasayfa=driver.findElementById("android:id/empty");
+
+        Assert.assertFalse(anasayfa.getText().isEmpty());
+        String expectedData="No gestures";
+        String actualData=anasayfa.getText();
+        Assert.assertEquals(actualData,expectedData);
+
 
 
 
