@@ -21,11 +21,14 @@ public class Appium01 {
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"10.0");
         desiredCapabilities.setCapability(MobileCapabilityType.APP,"E:\\Yazılım projeleri\\intelji IDE\\projelerim\\appiumkurulum\\Apps\\Calculator.apk");
         desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET,true);
-        AndroidDriver<AndroidElement> driver = new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"),desiredCapabilities);
+        AndroidDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"),desiredCapabilities);
 
 Thread.sleep(4000);
 
          driver.findElementById("com.google.android.calculator:id/digit_7").click();
+
+         Thread.sleep(4000);
+         driver.close();
 
     }
 }

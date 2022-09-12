@@ -20,23 +20,18 @@ public class Appium02 {
 
         DesiredCapabilities desiredCapabilities=new DesiredCapabilities();
 
-        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UIAutomator2");
+        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"Android");
         desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"Emulotar");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"10.0");
-        desiredCapabilities.setCapability(MobileCapabilityType.APP,"E:\\Yazılım projeleri\\intelji IDE\\projelerim\\appiumkurulum\\Apps\\gestureTool.apk");
+        //desiredCapabilities.setCapability(MobileCapabilityType.APP,"E:\\Yazılım projeleri\\intelji IDE\\projelerim\\appiumkurulum\\Apps\\gestureTool.apk");
         desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET,true);
+        desiredCapabilities.setCapability("appPackage","com.davemac327.gesture.tool");
+        desiredCapabilities.setCapability("appActivity","com.davemac327.gesture.tool.GestureBuilderActivity");
 
-        AndroidDriver<AndroidElement> driver=new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"),desiredCapabilities);
-
-
-        //List<AndroidElement> baslıkList=driver.findElements(By.xpath("//android.widget.Button"));
+        AndroidDriver<AndroidElement> driver=new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"),desiredCapabilities);
 
         Thread.sleep(3000);
-
-       // Assert.assertTrue(driver.findElement(By.xpath("(//android.widget.Button)[1]")).isEnabled());
-       // Assert.assertTrue(driver.findElement(By.xpath("(//android.widget.Button)[1]")).isDisplayed());
-       // Assert.assertTrue(driver.findElement(By.xpath("(//android.widget.Button)[1]")).isSelected());
 
 
         driver.findElement(By.xpath("(//android.widget.Button)[1]")).click();
