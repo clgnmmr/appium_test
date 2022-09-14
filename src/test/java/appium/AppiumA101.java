@@ -70,6 +70,7 @@ public class AppiumA101 {
         Assert.assertTrue(siyahCorapYazisi.getText().contains("Siyah"));
         AndroidElement sepet1=driver.findElementByXPath("(//android.widget.TextView[@text='SEPETE EKLE'])[1]");
         sepet1.click();
+        Thread.sleep(2000);
         AndroidElement sepet2=driver.findElementByXPath("//android.widget.TextView[@text='SEPETE EKLE']");
          sepet2.click();
         /*JavascriptExecutor js=(JavascriptExecutor) driver;
