@@ -35,13 +35,6 @@ public class Appium04Chrome {
 
         for (Object context:contextList) {
             System.out.println(context.toString());
-            Thread.sleep(2000);
-            if (context.toString().contains("WEBVIEW_chrome")){
-                driver.context((String) context);
-                Thread.sleep(10000);
-
-            }
-
         }
         System.out.println("2 "+driver.getContext());
 
