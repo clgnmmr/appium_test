@@ -31,9 +31,9 @@ public class AppiumA101 {
         desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"Emulator");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"10.0");
         desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET,true);
-        //desiredCapabilities.setCapability(MobileCapabilityType.APP,"E:\\Yazılım projeleri\\intelji IDE\\projelerim\\appiumkurulum\\Apps\\A101_3.6.8_apkcombo.com.apk");
-        desiredCapabilities.setCapability("appPackage","org.studionord.a101");
-        desiredCapabilities.setCapability("appActivity","org.studionord.a101.MainActivity");
+        desiredCapabilities.setCapability(MobileCapabilityType.APP,"E:\\Yazılım projeleri\\intelji IDE\\projelerim\\appiumkurulum\\Apps\\org.studionord.a101_128_7488874.apk");
+       // desiredCapabilities.setCapability("appPackage","org.studionord.a101");
+       // desiredCapabilities.setCapability("appActivity","org.studionord.a101.MainActivity");
         AndroidDriver<AndroidElement> driver=new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"),desiredCapabilities);
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
