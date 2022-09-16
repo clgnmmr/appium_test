@@ -45,6 +45,7 @@ public class Appium07 {
         Thread.sleep(2000);
         driver.findElementById("android:id/button1").click();
 
+        driver.navigate().refresh();
 
     }
 
