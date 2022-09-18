@@ -21,7 +21,7 @@ public class Appium03 {
         DesiredCapabilities desiredCapabilities=new DesiredCapabilities();
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"Android");
-        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"Emulator");
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"192.168.109.101:5555");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"10.0");
         desiredCapabilities.setCapability(MobileCapabilityType.BROWSER_NAME,"chrome");
        desiredCapabilities.setCapability("chromedriverExecutable","E:\\Yazılım projeleri\\intelji IDE\\projelerim\\appiumkurulum\\driver\\chromedriver.exe");
@@ -49,7 +49,7 @@ public class Appium03 {
         System.out.println("2 "+driver.getContext());
 
         // remote device on chrome   linkine git ve tel ile bilgisayardaki chrome bağla
-        Thread.sleep(15000);
+        Thread.sleep(3000);
         AndroidElement sigin=driver.findElement(By.xpath("//a[@class='nav-a nav-show-sign-in']"));
         sigin.click();
         Thread.sleep(3000);
