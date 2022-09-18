@@ -80,8 +80,9 @@ public class AppiumA101 {
         MobileElement sepetGit=driver.findElementByXPath("//android.widget.TextView[@text='SEPETE GİT']");
         sepetGit.click();
 
-        Thread.sleep(4000);
-        MobileElement sepetOnayla=driver.findElementByXPath("(//android.view.ViewGroup)[36]");
+        Thread.sleep(8000);
+        //MobileElement sepetOnayla=driver.findElementByXPath("(//android.view.ViewGroup)[36]");
+        MobileElement sepetOnayla=driver.findElementByXPath("(//android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[2])[2]");
         sepetOnayla.click();
 
         Thread.sleep(2000);
@@ -92,8 +93,72 @@ public class AppiumA101 {
         Faker faker=new Faker();
         String email=faker.internet().emailAddress();
         MobileElement emailButton=driver.findElementByXPath("//android.widget.EditText");
-        Actions ac=new Actions((WebDriver) emailButton);
-        ac.click(emailButton).sendKeys(email).sendKeys(Keys.TAB).sendKeys(Keys.ENTER).sendKeys(Keys.TAB).sendKeys(Keys.ENTER).perform();
+        emailButton.sendKeys(email);
+
+        MobileElement kisiselButon=driver.findElementByXPath("//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup/android.view.ViewGroup[1]");
+        kisiselButon.click();
+
+
+        Thread.sleep(2000);
+        MobileElement gonderButton=driver.findElementByXPath("//android.widget.TextView[@text='GÖNDER']");
+        gonderButton.click();
+        Thread.sleep(2000);
+        MobileElement yeniAdres=driver.findElementByXPath("(//android.widget.ListView/android.view.View)[5]");
+        yeniAdres.click();
+        Thread.sleep(2000);
+        MobileElement adresAdi=driver.findElementByXPath("(//android.widget.EditText)[1]");
+        adresAdi.sendKeys("evim");
+
+        Thread.sleep(2000);
+        MobileElement Adi=driver.findElementByXPath("(//android.widget.EditText)[2]");
+        Adi.sendKeys("kadir");
+
+        Thread.sleep(2000);
+        MobileElement soyAdi=driver.findElementByXPath("(//android.widget.EditText)[3]");
+        soyAdi.sendKeys("tepecik");
+
+        Thread.sleep(2000);
+        MobileElement telefon=driver.findElementByXPath("(//android.widget.EditText)[4]");
+        telefon.sendKeys("5443314959");
+
+        Thread.sleep(2000);
+        MobileElement il=driver.findElementByXPath("(//android.widget.Spinner)[1]");
+        il.click();
+        Thread.sleep(2000);
+        MobileElement ilsecme=driver.findElementByXPath("//android.widget.CheckedTextView[@text='İSTANBUL']");
+        ilsecme.click();
+
+        Thread.sleep(2000);
+        MobileElement ilce=driver.findElementByXPath("(//android.widget.Spinner)[2]");
+        ilce.click();
+        Thread.sleep(2000);
+        MobileElement ilcesecme=driver.findElementByXPath("//android.widget.CheckedTextView[@text='EYÜPSULTAN']");
+        ilcesecme.click();
+
+
+        Thread.sleep(2000);
+        MobileElement mahalle=driver.findElementByXPath("(//android.widget.Spinner)[3]");
+        mahalle.click();
+        Thread.sleep(2000);
+        MobileElement mahallesecme=driver.findElementByXPath("//android.widget.CheckedTextView[@text='MERKEZ MAH']");
+        mahallesecme.click();
+
+
+
+
+
+
+
+
+        Thread.sleep(2000);
+        MobileElement adres=driver.findElementByXPath("(//android.widget.EditText)[5]");
+        telefon.sendKeys(faker.lorem().characters(50,200));
+        Thread.sleep(2000);
+        MobileElement kaydet=driver.findElementByXPath("(//android.widget.Button)[2]");
+        kaydet.click();
+
+
+
 
 
 
