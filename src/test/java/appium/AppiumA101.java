@@ -1,23 +1,20 @@
 package appium;
 
 import com.github.javafaker.Faker;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.remote.MobileCapabilityType;
-import org.apache.hc.client5.http.ssl.ClientTlsStrategyBuilder;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.Select;
+import org.springframework.cglib.core.KeyFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -47,36 +44,77 @@ public class AppiumA101 {
         MobileElement dizAltiCorap=driver.findElementByXPath("//android.widget.TextView[@text='Dizaltı Çorap']");
        dizAltiCorap.click();
 
-       /* MobileElement filtre=driver.findElementByXPath("//android.widget.TextView[@text='Filtrele']");
+        MobileElement filtre=driver.findElementByXPath("//android.widget.TextView[@text='Filtrele']");
        filtre.click();
 
 
 
+       Thread.sleep(4000);
        List<MobileElement> filtreRenkler=driver.findElementsByXPath("//android.view.ViewGroup/android.view.ViewGroup[4]/android.view.ViewGroup/android.widget.TextView");
 
         for (int i = 0; i < filtreRenkler.size() ; i++) {
+            Thread.sleep(2000);
             if (filtreRenkler.get(i).getText().contains("SİYAH")){
+
                 System.out.println(filtreRenkler.get(i).getText());
                 filtreRenkler.get(i).click();
                 break;
             }
 
-        }*/
+        }
 
 
 
-        MobileElement siyahCorapYazisi=driver.findElementByXPath("//android.widget.TextView[@text='Penti Kadın 50 Denye Pantolon Çorabı Siyah']");
+       // MobileElement siyahCorapYazisi=driver.findElementByXPath("//android.widget.TextView[@text='Penti Kadın 50 Denye Pantolon Çorabı Siyah']");
 
-        System.out.println(siyahCorapYazisi.getText());
-        Assert.assertTrue(siyahCorapYazisi.getText().contains("Siyah"));
-        MobileElement sepet1=driver.findElementByXPath("(//android.widget.TextView[@text='SEPETE EKLE'])[1]");
-        sepet1.click();
         Thread.sleep(2000);
-        MobileElement sepet2=driver.findElementByXPath("//android.widget.TextView[@text='SEPETE EKLE']");
+       /* try {
+            driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(10)"));
+        } catch (InvalidSelectorException e) {
+            // ignore
+            e.printStackTrace();
+        }
+*/
+        List<MobileElement> siyahCorapYazisi=driver.findElementsByXPath("//android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[2]/android.view.ViewGroup/android.widget.TextView[1]");
+
+       // System.out.println(siyahCorapYazisi.getText());
+       // Assert.assertTrue(siyahCorapYazisi.getText().contains("Siyah"));
+        System.out.println(siyahCorapYazisi);
+
+        for (int i = 0; i <siyahCorapYazisi.size() ; i++) {
+            Thread.sleep(3000);
+            Assert.assertTrue(siyahCorapYazisi.get(i).getText().contains("Siyah"));
+
+        }
+
+
+
+        Thread.sleep(3000);
+      /*  try {
+            driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(10)"));
+        } catch (InvalidSelectorException e) {
+            // ignore
+            e.printStackTrace();
+        }*/
+       // MobileElement sepet1=driver.findElementByXPath("(//android.widget.TextView[@text='SEPETE EKLE'])[1]");
+        List<MobileElement> sepetler=driver.findElementsByXPath("//android.widget.TextView[@text='SEPETE EKLE']");
+        for (int i = 0; i <sepetler.size() ; i++) {
+            Thread.sleep(3000);
+            if (sepetler.get(i).isEnabled()){
+                sepetler.get(i).click();
+                break;
+            }
+
+        }
+       // sepet1.click();
+        Thread.sleep(3000);
+        //MobileElement sepet2=driver.findElementByXPath("//android.widget.TextView[@text='SEPETE EKLE']");
+        MobileElement sepet2=driver.findElementByXPath("(//android.view.ViewGroup[2])[5]");
          sepet2.click();
         /*JavascriptExecutor js=(JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();",sepet2);*/
         Thread.sleep(2000);
+
         MobileElement sepetGit=driver.findElementByXPath("//android.widget.TextView[@text='SEPETE GİT']");
         sepetGit.click();
 
@@ -132,30 +170,204 @@ public class AppiumA101 {
         MobileElement ilce=driver.findElementByXPath("(//android.widget.Spinner)[2]");
         ilce.click();
         Thread.sleep(2000);
-        MobileElement ilcesecme=driver.findElementByXPath("//android.widget.CheckedTextView[@text='EYÜPSULTAN']");
+        MobileElement ilcesecme=driver.findElementByXPath("//android.widget.CheckedTextView[@text='ARNAVUTKÖY']");
         ilcesecme.click();
-
-
         Thread.sleep(2000);
         MobileElement mahalle=driver.findElementByXPath("(//android.widget.Spinner)[3]");
         mahalle.click();
         Thread.sleep(2000);
-        MobileElement mahallesecme=driver.findElementByXPath("//android.widget.CheckedTextView[@text='MERKEZ MAH']");
+        MobileElement mahallesecme=driver.findElementByXPath("//android.widget.CheckedTextView[@text='ARNAVUTKÖY MERKEZ MAH']");
+
         mahallesecme.click();
-
-
-
-
-
-
 
 
         Thread.sleep(2000);
         MobileElement adres=driver.findElementByXPath("(//android.widget.EditText)[5]");
-        telefon.sendKeys(faker.lorem().characters(50,200));
+        adres.sendKeys(faker.address().streetAddress());
         Thread.sleep(2000);
-        MobileElement kaydet=driver.findElementByXPath("(//android.widget.Button)[2]");
-        kaydet.click();
+
+       /* TouchActions action = new TouchActions(driver);
+        action.scroll(adres, 10, 100);
+        action.perform();
+*/
+     //WebElement kaydet1 = driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)) .scrollIntoView(new UiSelector().textContains(\"(//android.widget.Button)[2]\").instance(0))");
+     // driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0))");
+     //kaydet1.click();
+        //WebElement kaydet=driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"(//android.widget.Button)[2]\"))");
+        try {
+            driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(10)"));
+        } catch (InvalidSelectorException e) {
+            // ignore
+        }
+     MobileElement kaydet1=driver.findElementByXPath("(//android.widget.Button)[2]");
+        kaydet1.click();
+
+        Thread.sleep(3000);
+        List<MobileElement> kargo=driver.findElementsByXPath("//android.widget.RadioButton");
+        for (int i = 1; i <kargo.size() ; i++) {
+            if (kargo.get(i).isDisplayed()){
+                kargo.get(i).click();
+            }
+
+        }
+
+
+        Thread.sleep(2000);
+        MobileElement kaydetDevamEt=driver.findElementByXPath("//android.widget.Button");
+        kaydetDevamEt.click();
+
+        /*
+        Thread.sleep(2000);
+        MobileElement garantiPay=driver.findElementByXPath("//android.view.View[@text='Garanti Pay']");
+        garantiPay.click();
+
+        Thread.sleep(2000);
+        MobileElement onBilgilendirme=driver.findElementByXPath("//android.view.View[@text='']");
+        onBilgilendirme.click();
+        Thread.sleep(2000);
+        MobileElement garantiPayOde=driver.findElementByXPath("//android.view.View[@text='Garanti Pay ile Öde']");
+        garantiPayOde.click();*/
+
+        Thread.sleep(2000);
+        //lutfen  kart bilgilerini girip test ediniz
+        String adSoyad="";
+        String kartno="";
+        String sonAy="";
+        String sonYil="";
+        String CVC="";
+        MobileElement adSoyadi=driver.findElementByXPath("(//android.widget.EditText)[1]");
+        adSoyadi.sendKeys(adSoyad);
+
+
+
+
+        Thread.sleep(2000);
+        MobileElement kartNumara=driver.findElementByXPath("(//android.widget.EditText)[2]");
+
+        kartNumara.click();
+        String[] sayi=kartno.split("");
+        for (int i = 0; i <sayi.length ; i++) {
+            kartNumara.sendKeys(sayi[i]);
+
+        }
+
+      /* kartNumara.sendKeys(kartno);
+        Thread.sleep(2000);
+        kartNumara.click();
+        Thread.sleep(2000);
+        kartNumara.click();
+        Thread.sleep(2000);
+       // kartNumara.click();
+        //Thread.sleep(2000);*/
+
+        //kartNumara.sendKeys(kartno);TouchAction ta=new TouchAction<>(driver);
+
+
+       /* String[]sayi=kartno.split("");
+        for (int i = 0; i <sayi.length ; i++) {
+            kartNumara.sendKeys(sayi[i],Keys.SPACE);
+
+        }
+        kartNumara.sendKeys(kartno);*/
+
+
+        /*for (int i = 0; i <kartno.length() ; i++) {
+            Thread.sleep(2000);
+            switch (kartno.charAt(i)){
+                case '0':
+                    kartNumara.sendKeys(Keys.NUMPAD0,Keys.ENTER);
+                    break;
+                case '1':
+                    kartNumara.sendKeys(Keys.NUMPAD1,Keys.ENTER);
+                    break;
+                case '2':
+                    kartNumara.sendKeys(Keys.NUMPAD2,Keys.ENTER);
+                    break;
+                case '3':
+                    kartNumara.sendKeys(Keys.NUMPAD3,Keys.ENTER);
+                    break;
+                case '4':
+                    kartNumara.sendKeys(Keys.NUMPAD4,Keys.ENTER);
+                    break;
+                case '5':
+                    kartNumara.sendKeys(Keys.NUMPAD5,Keys.ENTER);
+                    break;
+                case '6':
+                    kartNumara.sendKeys(Keys.NUMPAD6,Keys.ENTER);
+                    break;
+                case '7':
+                    kartNumara.sendKeys(Keys.NUMPAD7,Keys.ENTER);
+                    break;
+                case '8':
+                    kartNumara.sendKeys(Keys.NUMPAD8,Keys.ENTER);
+                    break;
+                case '9':
+                    kartNumara.sendKeys(Keys.NUMPAD9,Keys.ENTER);
+                    break;
+
+
+
+            }
+
+        }*/
+
+
+
+        Thread.sleep(4000);
+        MobileElement sonaySec=driver.findElementByXPath("(//android.widget.Spinner)[1]");
+        sonaySec.click();
+        Thread.sleep(2000);
+        MobileElement sonAyEkle=driver.findElementByXPath("//android.widget.CheckedTextView[@text='"+sonAy+"']");
+        sonAyEkle.click();
+
+
+        Thread.sleep(2000);
+        MobileElement sonYilSec=driver.findElementByXPath("(//android.widget.Spinner)[2]");
+        sonYilSec.click();
+        Thread.sleep(2000);
+        MobileElement sonYilEkle=driver.findElementByXPath("//android.widget.CheckedTextView[@text='"+sonYil+"']");
+        sonYilEkle.click();
+        Thread.sleep(2000);
+        MobileElement cvc=driver.findElementByXPath("(//android.widget.EditText)[3]");
+        cvc.sendKeys(CVC);
+
+        Thread.sleep(2000);
+     //MobileElement onbilgi=driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().textContains(\"//android.view.View[@text='']\"))");
+     //WebElement onBilgilendirme = driver.findElementByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)) .scrollIntoView(new UiSelector().textContains(\"//android.view.View[@text='']\").instance(0))");
+    // onBilgilendirme.click();
+        try {
+            driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(10)"));
+        } catch (InvalidSelectorException e) {
+            // ignore
+        }
+        MobileElement onBilgilendirme=driver.findElementByXPath("//android.view.View[@text='']");
+        onBilgilendirme.click();
+
+     Thread.sleep(2000);
+     MobileElement siparisTamamla=driver.findElementByXPath("//android.widget.Button[@text='Siparişi Tamamla']");
+     siparisTamamla.click();
+
+        //Thread.sleep(2000);
+        //MobileElement siparisTamamla2=driver.findElementByXPath("//android.widget.Button[@text='İşleniyor.. spinner']");
+        //siparisTamamla.click();
+
+        Thread.sleep(2000);
+        MobileElement dogrulamaKoduBaslık=driver.findElementByXPath("//android.view.View[@text='Doğrulama kodunu giriniz']");
+        Assert.assertTrue(dogrulamaKoduBaslık.isDisplayed());
+
+        Thread.sleep(2000);
+        MobileElement iptalEt=driver.findElementByXPath("//android.view.View[@text='İşlemi İptal Et']");
+        iptalEt.click();
+
+        Thread.sleep(2000);
+        MobileElement iptalEt2=driver.findElementByXPath("(//android.view.View[@text='İşlemi İptal Et'])[2]");
+        iptalEt2.click();
+
+
+
+
+
+
 
 
 
