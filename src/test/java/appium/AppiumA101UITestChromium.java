@@ -6,15 +6,17 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.MobileCapabilityType;
-import org.openqa.selenium.By;
-import org.openqa.selenium.InvalidSelectorException;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -92,7 +94,7 @@ public class AppiumA101UITestChromium {
         }
 
         Thread.sleep(5000);
-        driver.findElementByXPath("(//div[@class='mobile-dropdown visible-xs'])[1]").click();//ekleme
+        driver.findElementByXPath("//div[@class='count']").click();//ekleme
         Thread.sleep(2000);
         String actualdata=driver.findElementByXPath("//li[@class='breadcrumb-item active']//span").getText();//siyah Texti
         String expectedData="Siyah";
@@ -156,15 +158,80 @@ public class AppiumA101UITestChromium {
         Thread.sleep(2000);
         driver.findElementByXPath("//button[@class='button block green js-proceed-button']").click();//kaydet ve devam et
         Thread.sleep(2000);
+        String adSoyad="";
+        String kartno="";
+        String sonAy="";
+        String sonYil="";
+        String CVC="";
+
+        driver.findElementByXPath("(//input[@name='name'])[2]").sendKeys(adSoyad, Keys.TAB);//ad soyad
+        Thread.sleep(2000);
+        String sayi[]=kartno.split("");
+       //AndroidElement kartButton=driver.findElementByXPath("(//div/label/input)[6]");//kredikarto
+        //kartButton.click();
+       // kartButton.sendKeys(kartno);
+
+       // js.executeScript("arguments[0].click();",kartButton);
+       for (int i = 0; i <sayi.length ; i++) {
+           new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(By.xpath("(//div/label/input)[5]"))).sendKeys(sayi[i]);
 
 
-        driver.findElementByXPath("(//input[@name='name'])[2]").sendKeys("Kadir Tepecik");//ad soyad
+        }
         Thread.sleep(2000);
-        driver.findElementByXPath("//input[@class='js-masterpassbin-payment-card']").sendKeys("5124400280044308");//kredikarto
+        AndroidElement sonay=driver.findElementByXPath("(//select[@name='card_month'])[2]");//sonay
+        Select sc=new Select(sonay);
+        sc.selectByVisibleText(sonAy);
+        /*Thread.sleep(2000);
+        js.executeScript("arguments[0].click();",sonay);
+        Thread.sleep(5000);
+        driver.findElementByXPath("//option[@VALUE='"+sonAy+"']").click();//sonaysecim*/
+        Thread.sleep(5000);
+        AndroidElement sonyil=driver.findElementByXPath("(//select[@name='card_year'])[2]");//sonyıl
+        Select sc1=new Select(sonyil);
+        sc1.selectByVisibleText(sonYil);
+       /* Thread.sleep(5000);
+        js.executeScript("arguments[0].click();",sonyil);
+        Thread.sleep(5000);
+        driver.findElementByXPath("(//option[@value='"+sonYil+"'])[2]");//sonyil seçme*/
+
         Thread.sleep(2000);
-        driver.findElementByXPath("(//select[@class='js-payment-month'])[2]").click();//sonay
-        Thread.sleep(2000);
-        driver.findElementByXPath("//option[@VALUE='']").click();//sonaysecim
+        driver.findElementByXPath("(//input[@class='js-payment-cvv'])[2]").sendKeys(CVC);//cvc input
+
+
+
+        //driver.findElementByXPath("(//div[@class='agrement'])[2]").click();//on bilgilendirme metni
+       //js.executeScript("arguments[0].scroll(true);");
+        //(//div[@class='checkbox'])[2]
+        Thread.sleep(5000);
+        String el = "document.getElementById('agrement2').click()";
+        js.executeScript(el);
+
+
+
+       // WebDriverWait wait=new WebDriverWait(driver,5);
+      //  wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("//input[@id='agrement2']"))).click();
+        //new WebDriverWait(driver, 5).until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[@class='agrement'])[2]"))).click();
+        Thread.sleep(5000);
+        driver.findElementByXPath("(//button[@class='button block green continue-button'])[2]").click();//sipariş tamamla
+        //      (//*[text()='Siparişi Tamamla'])[2]
+
+        Thread.sleep(5000);
+
+        driver.switchTo().frame(driver.findElementByXPath("//iframe[@class='checkout-redirect-iframe']"));//11
+        //class="checkout-redirect-iframe"
+        AndroidElement dogrulama=driver.findElementByXPath("//label[text()='Doğrulama Kodu']");
+        Assert.assertTrue(dogrulama.isDisplayed());
+        Thread.sleep(5000);
+        driver.findElementByXPath("//div[@class='action-col left']").click();
+        Thread.sleep(5000);
+        driver.findElementByXPath("//div/a[@id='cancelbutton']").click();
+
+
+
+
+
 
     }
+
+
 }
