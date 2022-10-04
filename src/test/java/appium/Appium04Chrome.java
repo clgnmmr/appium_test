@@ -19,15 +19,15 @@ public class Appium04Chrome {
         DesiredCapabilities desiredCapabilities=new DesiredCapabilities();
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"Android");
-        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"RealDevice");
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"12.0");
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"Emulator");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"10.0");
        // desiredCapabilities.setCapability("chromedriverExecutable","E:\\Yazılım projeleri\\intelji IDE\\projelerim\\appiumkurulum\\driver\\chromedriver.exe");
         desiredCapabilities.setCapability("appPackage","com.android.chrome");
         desiredCapabilities.setCapability("appActivity","com.google.android.apps.chrome.Main");
         desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET,true);
         AndroidDriver<AndroidElement> driver=new AndroidDriver<AndroidElement>(new URL("http://127.0.0.1:4723/wd/hub"),desiredCapabilities);
         Thread.sleep(2000);
-        driver.get("https://www.A101.com.tr");
+        driver.get("https://www.amazon.com");
 
         String contrext=driver.getContext();
         System.out.println("1 "+contrext);
@@ -43,7 +43,7 @@ public class Appium04Chrome {
         AndroidElement sigin=driver.findElement(By.xpath("//android.view.View[@content-desc='Sign in ›']"));
         sigin.click();
         Thread.sleep(8000);
-        Assert.assertTrue(driver.findElementByXPath("//android.widget.TextView[@text='Sign in']").isDisplayed());
+        Assert.assertTrue(driver.findElementByXPath("//android.widget.TextView[@text='Welcome']").isDisplayed());
         System.out.println("3 "+driver.getContext());
 
         driver.quit();

@@ -5,16 +5,22 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.appium.java_client.touch.TapOptions;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.ElementOption;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.springframework.cglib.core.KeyFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -29,6 +35,7 @@ public class AppiumA101 {
         desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"Emulator");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"10.0");
         desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET,true);
+        desiredCapabilities.setCapability("autoAcceptAlert",true);
         //desiredCapabilities.setCapability(MobileCapabilityType.APP,"E:\\Yazılım projeleri\\intelji IDE\\projelerim\\appiumkurulum\\Apps\\org.studionord.a101_128_7488874.apk");
         desiredCapabilities.setCapability("appPackage","org.studionord.a101");
         desiredCapabilities.setCapability("appActivity","org.studionord.a101.MainActivity");
@@ -50,10 +57,10 @@ public class AppiumA101 {
 
 
        Thread.sleep(4000);
-       List<MobileElement> filtreRenkler=driver.findElementsByXPath("//android.view.ViewGroup/android.view.ViewGroup[4]/android.view.ViewGroup/android.widget.TextView");
+       List<MobileElement> filtreRenkler=driver.findElementsByXPath("//android.view.ViewGroup/android.view.ViewGroup[5]/android.view.ViewGroup/android.widget.TextView");
 
         for (int i = 0; i < filtreRenkler.size() ; i++) {
-            Thread.sleep(2000);
+            Thread.sleep(3000);
             if (filtreRenkler.get(i).getText().contains("SİYAH")){
 
                 System.out.println(filtreRenkler.get(i).getText());
@@ -79,10 +86,11 @@ public class AppiumA101 {
 
        // System.out.println(siyahCorapYazisi.getText());
        // Assert.assertTrue(siyahCorapYazisi.getText().contains("Siyah"));
-        System.out.println(siyahCorapYazisi);
+
 
         for (int i = 0; i <siyahCorapYazisi.size() ; i++) {
             Thread.sleep(3000);
+            System.out.println(siyahCorapYazisi.get(i).getText());
             Assert.assertTrue(siyahCorapYazisi.get(i).getText().contains("Siyah"));
 
         }
@@ -140,6 +148,7 @@ public class AppiumA101 {
         Thread.sleep(2000);
         MobileElement gonderButton=driver.findElementByXPath("//android.widget.TextView[@text='GÖNDER']");
         gonderButton.click();
+
         Thread.sleep(2000);
         MobileElement yeniAdres=driver.findElementByXPath("(//android.widget.ListView/android.view.View)[5]");
         yeniAdres.click();
@@ -243,24 +252,18 @@ public class AppiumA101 {
 
         Thread.sleep(2000);
         MobileElement kartNumara=driver.findElementByXPath("(//android.widget.EditText)[2]");
-
-        kartNumara.click();
+      //  new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(By.xpath("(//android.widget.EditText)[2]"))).sendKeys(kartno);
+        //kartNumara.click();
         String[] sayi=kartno.split("");
-        for (int i = 0; i <sayi.length ; i++) {
-            kartNumara.sendKeys(sayi[i]);
-
-        }
-
-      /* kartNumara.sendKeys(kartno);
-        Thread.sleep(2000);
+       /* JavascriptExecutor js = (JavascriptExecutor) driver;
+       WebDriverWait wait=new WebDriverWait(driver,3);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//android.widget.EditText)[2]")));*/
         kartNumara.click();
-        Thread.sleep(2000);
-        kartNumara.click();
-        Thread.sleep(2000);
-       // kartNumara.click();
-        //Thread.sleep(2000);*/
 
-        //kartNumara.sendKeys(kartno);TouchAction ta=new TouchAction<>(driver);
+       // driver.getKeyboard().sendKeys(Keys.NUMPAD5);
+        TouchAction touchAction = new TouchAction<>(driver);
+
+       // touchAction.tap(PointOption.point(570,2750)).perform();
 
 
        /* String[]sayi=kartno.split("");
@@ -269,47 +272,59 @@ public class AppiumA101 {
 
         }
         kartNumara.sendKeys(kartno);*/
+        Thread.sleep(4000);
 
-
-        /*for (int i = 0; i <kartno.length() ; i++) {
+        for (int i = 0; i <kartno.length() ; i++) {
             Thread.sleep(2000);
             switch (kartno.charAt(i)){
                 case '0':
-                    kartNumara.sendKeys(Keys.NUMPAD0,Keys.ENTER);
+                    Thread.sleep(2000);
+                    touchAction.tap(PointOption.point(570,2750)).perform();
                     break;
                 case '1':
-                    kartNumara.sendKeys(Keys.NUMPAD1,Keys.ENTER);
+                    Thread.sleep(2000);
+                    touchAction.tap(PointOption.point(220,2075)).perform();
                     break;
                 case '2':
-                    kartNumara.sendKeys(Keys.NUMPAD2,Keys.ENTER);
+                    Thread.sleep(2000);
+                    touchAction.tap(PointOption.point(580,2075)).perform();
                     break;
                 case '3':
-                    kartNumara.sendKeys(Keys.NUMPAD3,Keys.ENTER);
+                    Thread.sleep(2000);
+                    touchAction.tap(PointOption.point(975,2075)).perform();
                     break;
                 case '4':
-                    kartNumara.sendKeys(Keys.NUMPAD4,Keys.ENTER);
+                    Thread.sleep(2000);
+                    touchAction.tap(PointOption.point(220,2300)).perform();
                     break;
                 case '5':
-                    kartNumara.sendKeys(Keys.NUMPAD5,Keys.ENTER);
+                    Thread.sleep(2000);
+                    touchAction.tap(PointOption.point(580,2300)).perform();
                     break;
                 case '6':
-                    kartNumara.sendKeys(Keys.NUMPAD6,Keys.ENTER);
+                    Thread.sleep(2000);
+                    touchAction.tap(PointOption.point(975,2300)).perform();
                     break;
                 case '7':
-                    kartNumara.sendKeys(Keys.NUMPAD7,Keys.ENTER);
+                    Thread.sleep(2000);
+                    touchAction.tap(PointOption.point(220,2530)).perform();
                     break;
                 case '8':
-                    kartNumara.sendKeys(Keys.NUMPAD8,Keys.ENTER);
+                    Thread.sleep(2000);
+                    touchAction.tap(PointOption.point(580,2530)).perform();
                     break;
                 case '9':
-                    kartNumara.sendKeys(Keys.NUMPAD9,Keys.ENTER);
+                    Thread.sleep(2000);
+                    touchAction.tap(PointOption.point(975,2530)).perform();
                     break;
 
 
 
             }
 
-        }*/
+        }
+
+        touchAction.press(PointOption.point(940,1500)).perform();
 
 
 

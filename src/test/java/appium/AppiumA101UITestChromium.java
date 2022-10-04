@@ -117,6 +117,11 @@ public class AppiumA101UITestChromium {
         driver.findElementByXPath("//button[@class='button block green']").click();//devam et buttonu
         Thread.sleep(8000);
         driver.findElementByXPath("(//li[@class='half'])[1]").click();//yeni adres oluştur
+
+
+
+
+
         Thread.sleep(2000);
         driver.findElementByXPath("//input[@name='title']").sendKeys("evim");//adres başlığı
         Thread.sleep(2000);
