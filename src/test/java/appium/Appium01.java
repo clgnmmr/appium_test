@@ -17,7 +17,7 @@ public class Appium01 {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"Android");
-        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"Emulator");
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"192.168.109.105:5555");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"10.0");
         desiredCapabilities.setCapability(MobileCapabilityType.APP,"E:\\Yazılım projeleri\\intelji IDE\\projelerim\\appiumkurulum\\Apps\\Calculator.apk");
         desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET,true);

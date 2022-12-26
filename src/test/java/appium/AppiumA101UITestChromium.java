@@ -28,8 +28,8 @@ public class AppiumA101UITestChromium {
         DesiredCapabilities desiredCapabilities=new DesiredCapabilities();
         desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"UiAutomator2");
         desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"Android");
-        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"Emulator");
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"10.0");
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"Xiaomi");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"12.0");
         desiredCapabilities.setCapability(MobileCapabilityType.BROWSER_NAME,"chrome");
         desiredCapabilities.setCapability("chromedriverExecutable","E:\\Yazılım projeleri\\intelji IDE\\projelerim\\appiumkurulum\\driver\\chromedriver.exe");
         desiredCapabilities.setCapability(MobileCapabilityType.NO_RESET,true);
@@ -156,7 +156,7 @@ public class AppiumA101UITestChromium {
         Thread.sleep(2000);
         driver.findElementByXPath("//textarea[@class='js-address-textarea']").sendKeys(fk.address().streetAddress());//adress
         Thread.sleep(5000);
-        driver.findElementByXPath("//button[@class='button green js-set-country js-prevent-emoji']").click();//kaydet
+        driver.findElementByXPath("//button[contains(text(),'KAYDET')]").click();//kaydet
         Thread.sleep(3000);
         List<AndroidElement> kargolist=driver.findElements(By.xpath("//ul[@class='js-shipping-list']//li//div[2]"));//kargo
         kargolist.get(0).click();
